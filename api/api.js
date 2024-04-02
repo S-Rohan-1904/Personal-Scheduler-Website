@@ -33,7 +33,6 @@ const fetchAllTimetables = async () => {
   } catch (err) {
     return err;
   }
-  return;
 };
 
 const fetchTimetable = async (tt_id) => {
@@ -65,7 +64,6 @@ const updateTimetable = async (tt_id, tt_name) => {
         },
       }
     );
-    console.log(res);
     return res;
   } catch (err) {
     return err;
@@ -82,7 +80,6 @@ const deleteTimetable = async (tt_id) => {
         },
       }
     );
-    console.log(res);
     return res;
   } catch (err) {
     return err;

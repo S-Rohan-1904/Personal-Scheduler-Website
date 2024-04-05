@@ -22,6 +22,10 @@ const GlobalContext = React.createContext({
   dispatchEvent: ({ type, payload }) => {},
   selectedEvent: null,
   setSelectedEvent: () => {},
+  timetables: [],
+  dispatchTimetable: ({ type, payload }) => {},
+  currentTimetableIndex: 0,
+  setCurrentTimetableIndex: () => {},
 });
 
 export default GlobalContext;

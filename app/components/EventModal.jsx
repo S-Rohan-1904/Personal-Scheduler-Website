@@ -23,6 +23,8 @@ function EventModal() {
     savedEvents,
     selectedEvent,
     setSelectedEvent,
+    timetables,
+    currentTimetableIndex,
   } = useContext(GlobalContext);
 
   const [eventName, setEventName] = useState(
@@ -63,7 +65,7 @@ function EventModal() {
   const eventDeleteHandler = () => {
     (async () => {
       const res = await deleteEvent(
-        "660b0cc4383cbd4dbb088e2f",
+        timetables[currentTimetableIndex]?._id,
         selectedEvent._id
       );
 
@@ -103,7 +105,7 @@ function EventModal() {
       if (selectedEvent) {
         (async () => {
           const res = await updateEvent(
-            "660b0cc4383cbd4dbb088e2f",
+            timetables[currentTimetableIndex]?._id,
             selectedEvent._id,
             eventName,
             startDate.toISOString(),
@@ -115,13 +117,13 @@ function EventModal() {
       } else {
         (async () => {
           const res = await createEvent(
-            "660b0cc4383cbd4dbb088e2f",
+            timetables[currentTimetableIndex]?._id,
             eventName,
             startDate.toISOString(),
             endDate.toISOString()
           );
           console.log(res.data);
-          dispatchEvent({ type: "push", payload: res.data });
+          if (res.data) dispatchEvent({ type: "push", payload: res.data });
         })();
       }
 

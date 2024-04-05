@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 import { useState, useContext, useEffect } from "react";
 import axios from "axios";
-import fetchTimetable from "@/api/api";
 import GlobalContext from "../Context/GlobalContext";
 
 export default function Login() {
@@ -40,6 +39,7 @@ export default function Login() {
       setIsLoggedin(false);
       setIsError(true);
       if (!err?.response) {
+        console.log(err);
         setErrorMessage("No Server Response");
       } else if (err.response?.status == 400) {
         setErrorMessage("Invalid Authentication");
@@ -49,8 +49,6 @@ export default function Login() {
         setErrorMessage("Login Failed");
       }
     }
-    const timetableData = await fetchTimetable();
-    console.log(timetableData);
   };
 
   return (

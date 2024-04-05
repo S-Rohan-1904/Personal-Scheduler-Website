@@ -92,6 +92,22 @@ function EventModal() {
           (startDate.toISOString() >= event.endTime &&
             endDate.toISOString() >= event.endTime)
         ) {
+          console.log("h");
+          continue;
+        } else {
+          setErrMsg("There is a clash in the timings with another event");
+          validity = false;
+          setIsValid(false);
+          break;
+        }
+      } else if (selectedEvent == null) {
+        if (
+          (startDate.toISOString() <= event.startTime &&
+            endDate.toISOString() <= event.startTime) ||
+          (startDate.toISOString() >= event.endTime &&
+            endDate.toISOString() >= event.endTime)
+        ) {
+          console.log("h");
           continue;
         } else {
           setErrMsg("There is a clash in the timings with another event");

@@ -33,6 +33,7 @@ export default function Login() {
       );
       setIsLoggedin(true);
       setIsError(false);
+      setErrorMessage("");
       localStorage.setItem("token", response.data.token);
       router.push("/calendars");
     } catch (err) {
@@ -54,6 +55,7 @@ export default function Login() {
   return (
     <main>
       {isError && <h1>{errorMessage}</h1>}
+
       <input
         type="text"
         name=""

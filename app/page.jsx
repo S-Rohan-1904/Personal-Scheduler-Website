@@ -36,7 +36,7 @@ export default function Login() {
       setErrorMessage("");
       Cookies.set("token", response.data.token, {
         expires: 1 / 24, // Expires in 1 hour
-        httpOnly: true, // HTTP-only cookie
+        // httpOnly: true, // HTTP-only cookie
         // secure: true, // Secure cookie (HTTPS only)
         // sameSite: "strict", // SameSite cookie attribute
       });

@@ -113,20 +113,25 @@ function CalendarHeader() {
   };
   const timetableDeleteHandler = () => {
     (async () => {
-      const res = await deleteTimetable(timetables[currentTimetableIndex]?._id);
-      if (res) {
-        if (currentTimetableIndex != 0)
-          setCurrentTimetableIndex(currentTimetableIndex - 1);
-        else {
-          setCurrentTimetableIndex(0);
-        }
-        console.log(res);
-        dispatchTimetable({
-          type: "delete",
-          payload: timetables[currentTimetableIndex]?._id,
-        });
+      if (timetables.length == 1) {
+        setIsError(true);
+        setErrorMessage("Only one Timetable exists. It can't be deleted");
       } else {
-        console.log("h");
+        const res = await deleteTimetable(
+          timetables[currentTimetableIndex]?._id
+        );
+        if (res) {
+          if (currentTimetableIndex != 0)
+            setCurrentTimetableIndex(currentTimetableIndex - 1);
+          else {
+            setCurrentTimetableIndex(0);
+          }
+          console.log(res);
+          dispatchTimetable({
+            type: "delete",
+            payload: timetables[currentTimetableIndex]?._id,
+          });
+        }
       }
     })();
   };
@@ -201,7 +206,7 @@ function CalendarHeader() {
         </button>
         <button
           onClick={timetableDeleteHandler}
-          disabled={timetables?.length == 1}
+          // disabled={timetables?.length == 1}
         >
           <span className="cursor-pointer text-gray-600">
             <DeleteIcon />

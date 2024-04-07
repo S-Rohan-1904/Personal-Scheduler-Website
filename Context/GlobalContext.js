@@ -6,8 +6,6 @@ const GlobalContext = React.createContext({
   setIsLoggedin: () => {},
   isError: false,
   setIsError: () => {},
-  user: {},
-  setUser: () => {},
   errorMessage: "",
   setErrorMessage: () => {},
   monthIndex: 0,

@@ -18,17 +18,19 @@ export default function Login() {
   } = useContext(GlobalContext);
 
   const router = useRouter();
-
+  useEffect(() => {
+    setIsError(false);
+  }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
         "https://sutt-front-task2-d09a14a7c50b.herokuapp.com/auth/login",
         {
-          email: email,
-          password: password,
-          // email: "f20230935@pilani.bits-pilani.ac.in",
-          // password: "Roha0935",
+          // email: email,
+          // password: password,
+          email: "f20230935@pilani.bits-pilani.ac.in",
+          password: "Roha0935",
         }
       );
       setIsLoggedin(true);

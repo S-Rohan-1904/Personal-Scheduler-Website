@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import GlobalContext from "@/Context/GlobalContext";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -10,6 +10,7 @@ import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+
 import fetchAllTimetables, {
   createTimetable,
   updateTimetable,
@@ -24,7 +25,11 @@ function CalendarHeader() {
     dispatchTimetable,
     currentTimetableIndex,
     setCurrentTimetableIndex,
+    isError,
+    setIsError,
+    setErrorMessage,
   } = useContext(GlobalContext);
+  const innerTextRef = useRef(null);
   const [timetableName, setTimetableName] = useState("");
   const router = useRouter();
 
@@ -46,7 +51,6 @@ function CalendarHeader() {
   };
 
   const blurHandler = (e) => {
-    console.log(timetables[currentTimetableIndex]._id, e.target.innerText);
     (async () => {
       if (
         JSON.stringify(
@@ -55,6 +59,8 @@ function CalendarHeader() {
           )
         ) == JSON.stringify([])
       ) {
+        setIsError(false);
+        setErrorMessage("");
         const res = await updateTimetable(
           timetables[currentTimetableIndex]._id,
           e.target.innerText
@@ -64,7 +70,10 @@ function CalendarHeader() {
           setTimetableName(e.target.innerText);
         }
       } else {
-        setTimetableName((prevState) => prevState);
+        setIsError(true);
+        setErrorMessage(`Timetable ${e.target.innerText} already exists`);
+
+        innerTextRef.current.innerText = timetables[currentTimetableIndex].name;
       }
     })();
   };
@@ -86,12 +95,19 @@ function CalendarHeader() {
           )
         ) == JSON.stringify([])
       ) {
+        setIsError(false);
+        setErrorMessage("");
         const res = await createTimetable(`Demo ${timetables.length + 1}`);
         if (res) {
           setCurrentTimetableIndex(timetables.length);
           console.log(res);
           dispatchTimetable({ type: "push", payload: res.data });
         }
+      } else {
+        setIsError(true);
+        setErrorMessage(
+          `Timetable Demo ${timetables.length + 1} already exists`
+        );
       }
     })();
   };
@@ -132,9 +148,10 @@ function CalendarHeader() {
   }, []);
 
   return (
-    <div className="px-4 py-2 grid grid-cols-3 items-center  w-screen">
-      <div className="flex justify-center items-center">
-        <Image src={Logo} width={25} height={25} alt="Logo" className="mx-3" />
+    <div className="px-4 py-2 flex justify-between gap-x-16 items-center  w-screen">
+      <div className="flex justify-baseline items-center px-5">
+        {/* <Image src={Logo} width={25} height={25} alt="Logo" className="mx-3" /> */}
+
         <button className="border rounded py-2 px-4 " onClick={handleReset}>
           Today
         </button>
@@ -145,7 +162,7 @@ function CalendarHeader() {
           </span>
         </button>
         {/* if month index is >11 it will move on to the next year */}
-        <h2 className="">
+        <h2>
           {dayjs(new Date(dayjs().year(), monthIndex)).format("MMMM YYYY")}
         </h2>
         <button onClick={handleNextMonth}>
@@ -161,7 +178,12 @@ function CalendarHeader() {
           </span>
         </button>
 
-        <p className="outline-none" onBlur={blurHandler} contentEditable={true}>
+        <p
+          className="outline-none"
+          onBlur={blurHandler}
+          contentEditable={true}
+          ref={innerTextRef}
+        >
           {timetables ? timetables[currentTimetableIndex]?.name : ""}
         </p>
 
@@ -185,7 +207,11 @@ function CalendarHeader() {
             <DeleteIcon />
           </span>
         </button>
-        <button onClick={logoutHandler} className="mx-10">
+
+        <button
+          onClick={logoutHandler}
+          className="bg-red-500 hover:bg-red-600 ml-5 px-3 py-2 rounded text-white"
+        >
           Logout
         </button>
       </div>

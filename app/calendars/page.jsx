@@ -9,7 +9,7 @@ import Sidebar from "../components/Sidebar";
 import Month from "../components/Month";
 import EventModal from "../components/EventModal";
 import Link from "next/link";
-
+import ErrorModal from "../components/ErrorModal";
 import fetchAllTimetables, {
   fetchAllEvents,
   fetchEvent,
@@ -27,18 +27,11 @@ function Calendar() {
   );
 
   const {
-    setIsLoggedin,
     isLoggedin,
-    setErrorMessage,
-    isError,
-    setIsError,
-    errorMessage,
     monthIndex,
     showEventModal,
     dispatchEvent,
-    savedEvents,
-    timetables,
-    dispatchTimetable,
+    isError,
     currentTimetableIndex,
   } = useContext(GlobalContext);
   useEffect(() => {
@@ -63,7 +56,7 @@ function Calendar() {
 
   return (
     <React.Fragment>
-      {isError && <p>{errorMessage}</p>}
+      {isError && <ErrorModal />}
       {isLoggedin ? (
         <>
           {showEventModal && <EventModal />}

@@ -26,43 +26,25 @@ const savedEventsReducer = (state, { type, payload }) => {
 const timetableReducer = (state, { type, payload }) => {
   switch (type) {
     case "push":
-      console.log(state);
-      console.log(payload);
-
       if (state && !state?.includes(payload)) {
         return [...state, payload];
       }
-    // if (
-    //   JSON.stringify(state) != JSON.stringify(payload) &&
-    //   payload != undefined &&
-    //   !state.includes(payload)
-    // ) {
-    //   console.log(state, payload);
-    //   // to make it a single array of object
-    //   // return state?.flat().concat(payload);
-    //   return state.flat().concat(payload);
-    // }
     case "update":
-      console.log(state);
-      console.log(payload);
       return state.map((timetable) =>
         timetable?._id == payload?._id ? payload : timetable
       );
     case "delete":
-      console.log(state);
-      console.log(payload);
       return state.filter((timetable) => timetable?._id != payload);
     case "write":
       return payload;
     default:
-      console.log("error");
+      console.log("Enter a correct option");
   }
 };
 
 function ContextWrapper(props) {
   const [isLoggedin, setIsLoggedin] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [user, setUser] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
   const [monthIndex, setMonthIndex] = useState(null);
   const [smallCalendarMonthIndex, setSmallCalendarMonthIndex] = useState(
@@ -82,8 +64,6 @@ function ContextWrapper(props) {
         setIsLoggedin,
         isError,
         setIsError,
-        user,
-        setUser,
         errorMessage,
         setErrorMessage,
         monthIndex,

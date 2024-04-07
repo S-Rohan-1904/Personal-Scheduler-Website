@@ -8,12 +8,7 @@ import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
-import {
-  createEvent,
-  deleteEvent,
-  fetchAllEvents,
-  updateEvent,
-} from "@/api/api";
+import { createEvent, deleteEvent, updateEvent } from "@/api/api";
 
 function EventModal() {
   const {

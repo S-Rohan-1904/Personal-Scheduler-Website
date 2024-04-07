@@ -1,16 +1,18 @@
 "use client";
 import React, { useContext } from "react";
-import Image from "next/image";
-import Plus from "../../public/plus.svg";
+import AddIcon from "@mui/icons-material/Add";
 import GlobalContext from "@/Context/GlobalContext";
+
 function CreateEventButton() {
   const { setShowEventModal } = useContext(GlobalContext);
   return (
     <button
-      className="border p-2 rounded-full flex items-center shadow-md hover:shadow-2xl"
+      className="border p-4 rounded-full flex items-center shadow-md "
       onClick={() => setShowEventModal(true)}
     >
-      <Image src={Plus} width={30} alt="Create Event" />
+      <span className="cursor-pointer text-gray-600 ">
+        <AddIcon />
+      </span>
       <span className="pl-3 pr-7">Create Event</span>
     </button>
   );

@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 const createTimetable = async (tt_name) => {
   try {
     const res = await axios.post(
@@ -8,7 +9,7 @@ const createTimetable = async (tt_name) => {
       },
       {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${Cookies.get("token")}`,
         },
       }
     );
@@ -24,7 +25,7 @@ const fetchAllTimetables = async () => {
       "https://sutt-front-task2-d09a14a7c50b.herokuapp.com/timetables/",
       {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${Cookies.get("token")}`,
         },
       }
     );
@@ -41,7 +42,7 @@ const fetchTimetable = async (tt_id) => {
       `https://sutt-front-task2-d09a14a7c50b.herokuapp.com/timetables/${tt_id}`,
       {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${Cookies.get("token")}`,
         },
       }
     );
@@ -60,7 +61,7 @@ const updateTimetable = async (tt_id, tt_name) => {
       },
       {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${Cookies.get("token")}`,
         },
       }
     );
@@ -76,7 +77,7 @@ const deleteTimetable = async (tt_id) => {
       `https://sutt-front-task2-d09a14a7c50b.herokuapp.com/timetables/${tt_id}`,
       {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${Cookies.get("token")}`,
         },
       }
     );
@@ -97,7 +98,7 @@ const createEvent = async (tt_id, eventName, startDate, endDate) => {
       },
       {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${Cookies.get("token")}`,
         },
       }
     );
@@ -113,7 +114,7 @@ const fetchAllEvents = async (tt_id) => {
       `https://sutt-front-task2-d09a14a7c50b.herokuapp.com/timetables/${tt_id}/events/`,
       {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${Cookies.get("token")}`,
         },
       }
     );
@@ -129,7 +130,7 @@ const fetchEvent = async (tt_id, event_id) => {
       `https://sutt-front-task2-d09a14a7c50b.herokuapp.com/timetables/${tt_id}/events/${event_id}`,
       {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${Cookies.get("token")}`,
         },
       }
     );
@@ -150,7 +151,7 @@ const updateEvent = async (tt_id, event_id, eventName, startDate, endDate) => {
       },
       {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${Cookies.get("token")}`,
         },
       }
     );
@@ -167,7 +168,7 @@ const deleteEvent = async (tt_id, event_id) => {
       `https://sutt-front-task2-d09a14a7c50b.herokuapp.com/timetables/${tt_id}/events/${event_id}`,
       {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${Cookies.get("token")}`,
         },
       }
     );

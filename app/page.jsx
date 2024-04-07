@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import GlobalContext from "../Context/GlobalContext";
-
+import Cookies from "js-cookie";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,7 +34,13 @@ export default function Login() {
       setIsLoggedin(true);
       setIsError(false);
       setErrorMessage("");
-      localStorage.setItem("token", response.data.token);
+      Cookies.set("token", response.data.token, {
+        expires: 1 / 24, // Expires in 1 hour
+        httpOnly: true, // HTTP-only cookie
+        secure: true, // Secure cookie (HTTPS only)
+        sameSite: "strict", // SameSite cookie attribute
+      });
+
       router.push("/calendars");
     } catch (err) {
       setIsLoggedin(false);

@@ -9,6 +9,7 @@ import Image from "next/image";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 import fetchAllTimetables, {
   createTimetable,
   updateTimetable,
@@ -114,7 +115,7 @@ function CalendarHeader() {
     })();
   };
   const logoutHandler = () => {
-    localStorage.setItem("token", "");
+    Cookies.set("token", "");
     router.push("/");
   };
   useEffect(() => {

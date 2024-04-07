@@ -19,7 +19,7 @@ const savedEventsReducer = (state, { type, payload }) => {
     case "write":
       return payload;
     default:
-      console.log("error");
+      console.log("Send a correct type");
   }
 };
 
@@ -38,7 +38,7 @@ const timetableReducer = (state, { type, payload }) => {
     case "write":
       return payload;
     default:
-      console.log("Enter a correct option");
+      console.log("Send a correct type");
   }
 };
 

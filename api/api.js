@@ -155,7 +155,6 @@ const updateEvent = async (tt_id, event_id, eventName, startDate, endDate) => {
         },
       }
     );
-    console.log(res);
     return res;
   } catch (err) {
     return err;
@@ -172,7 +171,6 @@ const deleteEvent = async (tt_id, event_id) => {
         },
       }
     );
-    console.log(res);
     return res;
   } catch (err) {
     return err;

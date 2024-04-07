@@ -46,7 +46,6 @@ export default function Login() {
       setIsLoggedin(false);
       setIsError(true);
       if (!err?.response) {
-        console.log(err);
         setErrorMessage("No Server Response");
       } else if (err.response?.status == 400) {
         setErrorMessage("Invalid Credentials");

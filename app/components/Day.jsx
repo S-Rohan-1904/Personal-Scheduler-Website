@@ -16,13 +16,12 @@ function Day({ day, rowIndex }) {
     // filter logic should work for multiple day spanning events
     let events = savedEvents.filter((event) => {
       const temp = day;
-      // console.log(dayjs(new Date(event.startTime)).format());
+
       const [a, b] = temp.format().split("T");
       const [c, d] = dayjs(new Date(event.startTime)).format().split("T");
       const [e, f] = dayjs(new Date(event.endTime)).format().split("T");
-      // console.log(day, event.startTime, event.endTime);
+
       return c <= a && a <= e;
-      // console.log(day.format().slice(i));
     });
     function removeDuplicates(array) {
       const seen = {};

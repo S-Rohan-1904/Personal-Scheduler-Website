@@ -100,7 +100,7 @@ function CalendarHeader() {
         const res = await createTimetable(`Demo ${timetables.length + 1}`);
         if (res) {
           setCurrentTimetableIndex(timetables.length);
-          console.log(res);
+
           dispatchTimetable({ type: "push", payload: res.data });
         }
       } else {
@@ -126,7 +126,7 @@ function CalendarHeader() {
           else {
             setCurrentTimetableIndex(0);
           }
-          console.log(res);
+
           dispatchTimetable({
             type: "delete",
             payload: timetables[currentTimetableIndex]?._id,

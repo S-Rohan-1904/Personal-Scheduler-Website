@@ -79,7 +79,7 @@ function EventModal() {
 
     for (let i = 0; i < savedEvents.length; i++) {
       let event = savedEvents[i];
-      console.log(event);
+
       if (selectedEvent && event._id != selectedEvent._id) {
         if (
           (startDate.toISOString() <= event.startTime &&
@@ -101,7 +101,6 @@ function EventModal() {
           (startDate.toISOString() >= event.endTime &&
             endDate.toISOString() >= event.endTime)
         ) {
-          console.log("h");
           continue;
         } else {
           setErrMsg("There is a clash in the timings with another event");
@@ -121,7 +120,7 @@ function EventModal() {
             startDate.toISOString(),
             endDate.toISOString()
           );
-          console.log(res.data);
+
           if (res.data) dispatchEvent({ type: "update", payload: res.data });
         })();
       } else {
@@ -132,7 +131,7 @@ function EventModal() {
             startDate.toISOString(),
             endDate.toISOString()
           );
-          console.log(res.data);
+
           if (res.data) dispatchEvent({ type: "push", payload: res.data });
         })();
       }

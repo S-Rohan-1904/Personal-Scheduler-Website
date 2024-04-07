@@ -37,8 +37,8 @@ export default function Login() {
       Cookies.set("token", response.data.token, {
         expires: 1 / 24, // Expires in 1 hour
         httpOnly: true, // HTTP-only cookie
-        secure: true, // Secure cookie (HTTPS only)
-        sameSite: "strict", // SameSite cookie attribute
+        // secure: true, // Secure cookie (HTTPS only)
+        // sameSite: "strict", // SameSite cookie attribute
       });
 
       router.push("/calendars");

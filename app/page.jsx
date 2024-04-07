@@ -49,7 +49,7 @@ export default function Login() {
         console.log(err);
         setErrorMessage("No Server Response");
       } else if (err.response?.status == 400) {
-        setErrorMessage("Invalid Authentication");
+        setErrorMessage("Invalid Credentials");
       } else if (err.response?.status == 401) {
         setErrorMessage("Unable to reach the server");
       } else {

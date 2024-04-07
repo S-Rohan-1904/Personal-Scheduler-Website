@@ -49,7 +49,7 @@ function SmallCalendar() {
   };
   return (
     <div className="mt-9">
-      <header className="flex justify-between pb-3">
+      <div className="flex justify-between pb-3">
         <p className="text-gray-500 font-bold mr-2">
           {dayjs(
             new Date(dayjs().year(), currentMonthIndexOfSmallCalendar)
@@ -68,7 +68,7 @@ function SmallCalendar() {
             </span>
           </button>
         </div>
-      </header>
+      </div>
       <div className="grid grid-cols-7 grid-rows-7">
         {smallCalendar[0].map((day, i) => (
           <span key={i} className="text-sm py-1 text-center">

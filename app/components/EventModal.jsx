@@ -92,7 +92,6 @@ function EventModal() {
           (startDate.toISOString() >= event.endTime &&
             endDate.toISOString() >= event.endTime)
         ) {
-          console.log("h");
           continue;
         } else {
           setErrMsg("There is a clash in the timings with another event");
@@ -149,7 +148,7 @@ function EventModal() {
   return (
     <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center">
       <form className="bg-white rounded-lg shadow-2xl w-1/4">
-        <header className="bg-gray-100 px-4 py-2 flex justify-end items-center">
+        <div className="bg-gray-100 px-4 py-2 flex justify-end items-center">
           {selectedEvent && (
             <button onClick={eventDeleteHandler}>
               <DeleteIcon />
@@ -163,7 +162,7 @@ function EventModal() {
           >
             <CloseIcon />
           </button>
-        </header>
+        </div>
         <div className="p-3">
           <div className="grid grid-cols-1/5 items-end gap-y-7"></div>
           <input

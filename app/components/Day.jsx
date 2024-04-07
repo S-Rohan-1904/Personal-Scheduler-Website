@@ -40,7 +40,7 @@ function Day({ day, rowIndex }) {
   }, [savedEvents, day]);
   return (
     <div className="border border-gray-200 flex flex-col">
-      <header className="flex flex-col items-center">
+      <div className="flex flex-col items-center">
         {/* to show the day only in first row */}
         {rowIndex == 0 && (
           <p className="text-sm mt-1">{day.format("ddd").toUpperCase()}</p>
@@ -48,7 +48,7 @@ function Day({ day, rowIndex }) {
         <p className={`text-sm p-1 my-1 text-center ${getCurrentDayClass()}`}>
           {day.format("DD")}
         </p>
-      </header>
+      </div>
       <div
         className="flex-1 cursor-pointer"
         onClick={() => {

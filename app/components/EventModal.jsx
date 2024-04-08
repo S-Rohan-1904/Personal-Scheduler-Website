@@ -72,7 +72,7 @@ function EventModal() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    // dispatchEvent({ type: "create", payload: event });
+
     // Create event api call
     //handle error of event creation
     let validity = true;

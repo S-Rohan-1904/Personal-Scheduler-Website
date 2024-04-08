@@ -8,14 +8,14 @@ function ErrorModal() {
   return (
     <div className="h-screen w-full fixed bottom-10 flex justify-center items-end ">
       <div className="bg-red-500 flex gap-2 py-5 px-5">
-        <h1>{errorMessage}</h1>
+        <h1 className="text-white">{errorMessage}</h1>
         <button
           onClick={() => {
             setIsError(false);
             setErrorMessage("");
           }}
         >
-          <CloseIcon />
+          <CloseIcon className="text-white" />
         </button>
       </div>
     </div>

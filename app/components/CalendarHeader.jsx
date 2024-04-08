@@ -4,8 +4,7 @@ import GlobalContext from "@/Context/GlobalContext";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import dayjs from "dayjs";
-import Logo from "../../public/logo.png";
-import Image from "next/image";
+
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useRouter } from "next/navigation";
@@ -25,7 +24,7 @@ function CalendarHeader() {
     dispatchTimetable,
     currentTimetableIndex,
     setCurrentTimetableIndex,
-    isError,
+
     setIsError,
     setErrorMessage,
   } = useContext(GlobalContext);
@@ -155,8 +154,6 @@ function CalendarHeader() {
   return (
     <div className="px-4 py-2 flex justify-between gap-x-16 items-center  w-screen">
       <div className="flex justify-baseline items-center px-5">
-        {/* <Image src={Logo} width={25} height={25} alt="Logo" className="mx-3" /> */}
-
         <button className="border rounded py-2 px-4 " onClick={handleReset}>
           Today
         </button>
@@ -204,10 +201,7 @@ function CalendarHeader() {
             <AddIcon />
           </span>
         </button>
-        <button
-          onClick={timetableDeleteHandler}
-          // disabled={timetables?.length == 1}
-        >
+        <button onClick={timetableDeleteHandler}>
           <span className="cursor-pointer text-gray-600">
             <DeleteIcon />
           </span>

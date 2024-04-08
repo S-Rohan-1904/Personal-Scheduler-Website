@@ -10,17 +10,7 @@ import Month from "../components/Month";
 import EventModal from "../components/EventModal";
 import Link from "next/link";
 import ErrorModal from "../components/ErrorModal";
-import fetchAllTimetables, {
-  fetchAllEvents,
-  fetchEvent,
-  createEvent,
-  updateEvent,
-  deleteEvent,
-  deleteTimetable,
-  createTimetable,
-  updateTimetable,
-  fetchTimetable,
-} from "@/api/api";
+import fetchAllTimetables, { fetchAllEvents } from "@/api/api";
 function Calendar() {
   const [currentMonthCalendar, setCurrentMonthCalendar] = useState(
     getCalendar()

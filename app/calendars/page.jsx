@@ -12,6 +12,7 @@ import Link from "next/link";
 import ErrorModal from "../components/ErrorModal";
 import fetchAllTimetables, { fetchAllEvents } from "@/api/api";
 function Calendar() {
+  //calendar of the current month
   const [currentMonthCalendar, setCurrentMonthCalendar] = useState(
     getCalendar()
   );

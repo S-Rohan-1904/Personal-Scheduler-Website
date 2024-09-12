@@ -7,16 +7,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 function SmallCalendar() {
-  //local state to desyncronize it with the big calendar
-  const [
-    currentMonthIndexOfSmallCalendar,
-    setcurrentMonthIndexOfSmallCalendar,
-  ] = useState(dayjs().month());
-  const [smallCalendar, setSmallCalendar] = useState(getCalendar());
-  useEffect(() => {
-    setSmallCalendar(getCalendar(currentMonthIndexOfSmallCalendar));
-  }, [currentMonthIndexOfSmallCalendar]);
-
+  // global small calendar month index is just to sychronize big calendar when we click on a day
   const {
     monthIndex,
     setMonthIndex,
@@ -25,21 +16,38 @@ function SmallCalendar() {
     daySelected,
     setDaySelected,
   } = useContext(GlobalContext);
+
+  //(currentMonthIndexOfSmallCalendar) local state to desyncronize it with the big calendar
+  const [
+    currentMonthIndexOfSmallCalendar,
+    setcurrentMonthIndexOfSmallCalendar,
+  ] = useState(dayjs().month());
+  const [smallCalendar, setSmallCalendar] = useState(getCalendar());
+
+  useEffect(() => {
+    setSmallCalendar(getCalendar(currentMonthIndexOfSmallCalendar));
+  }, [currentMonthIndexOfSmallCalendar]);
+
   // to sync small calendar with big calendar if we change the big calendar month(month index)
   useEffect(() => {
     setcurrentMonthIndexOfSmallCalendar(monthIndex);
   }, [monthIndex]);
+
   const handlePrevMonth = () => {
     setcurrentMonthIndexOfSmallCalendar((prevState) => prevState - 1);
   };
+
   const handleNextMonth = () => {
     setcurrentMonthIndexOfSmallCalendar((prevState) => prevState + 1);
   };
+
   useEffect(() => {
     if (smallCalendarMonthIndex != null) setMonthIndex(smallCalendarMonthIndex);
   }, [smallCalendarMonthIndex]);
   const getDayClass = (day) => {
+    //today's date
     const nowDay = dayjs().format("DD-MM-YY");
+    // current day through which we are looping through in map
     const currDay = day.format("DD-MM-YY");
     const selectedDay = daySelected && daySelected.format("DD-MM-YY");
     if (nowDay == currDay) return "bg-blue-500 rounded-full text-white";
@@ -47,6 +55,7 @@ function SmallCalendar() {
       return "bg-blue-100 rounded-full text-blue-600 font-bold";
     else return "";
   };
+
   return (
     <div className="mt-9">
       <div className="flex justify-between pb-3">
@@ -70,12 +79,14 @@ function SmallCalendar() {
         </div>
       </div>
       <div className="grid grid-cols-7 grid-rows-7">
+        {/* to display day of the week */}
         {smallCalendar[0].map((day, i) => (
           <span key={i} className="text-sm py-1 text-center">
             {/* to get the first character of day */}
             {day.format("dd").charAt(0)}
           </span>
         ))}
+        {/* to display the small calendar */}
         {smallCalendar.map((row, i) => (
           <React.Fragment key={i}>
             {row.map((day, j) => (

@@ -8,19 +8,14 @@ import Cookies from "js-cookie";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const {
-    setIsLoggedin,
-    isError,
-    setIsError,
-    setUser,
-    errorMessage,
-    setErrorMessage,
-  } = useContext(GlobalContext);
+  const { setIsLoggedin, isError, setIsError, errorMessage, setErrorMessage } =
+    useContext(GlobalContext);
 
   const router = useRouter();
   useEffect(() => {
     setIsError(false);
   }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -66,13 +61,13 @@ export default function Login() {
             {isError && <h1 className="text-red-500 my-5">{errorMessage}</h1>}
             <div className="mt-4">
               <div>
-                <label className="block" for="email">
+                <label className="block" htmlFor="email">
                   Email
                 </label>
                 <input
                   type="text"
                   placeholder="Email"
-                  class="w-full px-4 py-2 mt-2 border rounded-md focus:ring-blue-600"
+                  className="w-full px-4 py-2 mt-2 border rounded-md focus:ring-blue-600"
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>

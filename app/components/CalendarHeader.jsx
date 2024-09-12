@@ -24,7 +24,6 @@ function CalendarHeader() {
     dispatchTimetable,
     currentTimetableIndex,
     setCurrentTimetableIndex,
-
     setIsError,
     setErrorMessage,
   } = useContext(GlobalContext);
@@ -54,7 +53,10 @@ function CalendarHeader() {
       if (
         JSON.stringify(
           timetables.filter(
-            (timetable) => timetable && timetable.name == e.target.innerText
+            (timetable) =>
+              timetable &&
+              timetable.name == e.target.innerText &&
+              timetable._id != timetables[currentTimetableIndex]._id
           )
         ) == JSON.stringify([])
       ) {
@@ -77,7 +79,7 @@ function CalendarHeader() {
     })();
   };
   const handleReset = () => {
-    //because useEffect of small calendar doesn't recognize change when the index is same hence we add a decimal value and use floor in get calendar
+    //because useEffect of small calendar doesn't recognize change when the monthIndex is same hence we add a decimal value and use floor in get calendar
     setMonthIndex(
       monthIndex == dayjs().month()
         ? monthIndex + Math.random()

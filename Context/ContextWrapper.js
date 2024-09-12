@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useReducer } from "react";
 import GlobalContext from "./GlobalContext";
 import dayjs from "dayjs";
 
@@ -46,10 +46,8 @@ function ContextWrapper(props) {
   const [isLoggedin, setIsLoggedin] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [monthIndex, setMonthIndex] = useState(null);
-  const [smallCalendarMonthIndex, setSmallCalendarMonthIndex] = useState(
-    dayjs().month()
-  );
+  const [monthIndex, setMonthIndex] = useState(dayjs().month());
+  const [smallCalendarMonthIndex, setSmallCalendarMonthIndex] = useState(null);
   const [daySelected, setDaySelected] = useState(dayjs());
   const [showEventModal, setShowEventModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);

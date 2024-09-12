@@ -31,7 +31,8 @@ function EventModal() {
   const [endDate, setEndDate] = useState(
     selectedEvent
       ? dayjs(selectedEvent.endTime)
-      : dayjs(new Date(daySelected).getTime() + 60 * 60 * 1000)
+      : // endTime = startTime + 1 hour
+        dayjs(new Date(daySelected).getTime() + 60 * 60 * 1000)
   );
   const [isValid, setIsValid] = useState(true);
   const [err, setErrMsg] = useState("");
@@ -72,14 +73,10 @@ function EventModal() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
-    // Create event api call
-    //handle error of event creation
     let validity = true;
-
     for (let i = 0; i < savedEvents.length; i++) {
       let event = savedEvents[i];
-
+      // to ensure we are not checking the same event for the clash
       if (selectedEvent && event._id != selectedEvent._id) {
         if (
           (startDate.toISOString() <= event.startTime &&
@@ -94,6 +91,7 @@ function EventModal() {
           setIsValid(false);
           break;
         }
+        //if there is no selected event (Creation of new event)
       } else if (selectedEvent == null) {
         if (
           (startDate.toISOString() <= event.startTime &&
@@ -168,6 +166,7 @@ function EventModal() {
             className="pt-3 border-0 text-gray-600 text-xl font-semibold pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
           />
         </div>
+        {/* date picker from mui */}
         <div className="px-3 py-3">
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DateTimePicker"]}>

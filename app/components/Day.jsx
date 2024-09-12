@@ -59,7 +59,7 @@ function Day({ day, rowIndex }) {
           <div
             key={i}
             onClick={() => setSelectedEvent(event)}
-            className="bg-blue-500 p-1 mr-3 my-3 text-gray-600 text-sm rounded mb-1 trumcate"
+            className="bg-blue-500 p-1 mr-3 my-3 text-gray-600 text-sm rounded mb-1 truncate"
           >
             {event.name}
           </div>
